@@ -775,6 +775,14 @@ body {
     padding: 0 2rem;
     margin-bottom: 3rem;
 }
+#watchlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto, 1fr); /* Exactly 3 equal columns */
+    gap: 16px; /* Optional spacing between cards */
+  }
+#watchlist-grid .movie-card {
+    width: 100%; /* Ensure cards fill the grid cell */
+}
 
 .movie-grid.large-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

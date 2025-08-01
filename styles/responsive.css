@@ -78,7 +78,7 @@
     }
 }
 @media (max-width: 854px) {
-  #explore-grid {
+  #explore-grid, #watchlist-grid {
     display: grid;
     grid-template-columns: repeat(auto, 1fr); /* Exactly 3 equal columns */
     gap: 16px; /* Optional spacing between cards */

@@ -1,0 +1,496 @@
+/* Advanced Animation Styles */
+
+/* Scroll-triggered animations */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal.slide-left {
+    transform: translateX(-50px);
+}
+
+.scroll-reveal.slide-left.revealed {
+    transform: translateX(0);
+}
+
+.scroll-reveal.slide-right {
+    transform: translateX(50px);
+}
+
+.scroll-reveal.slide-right.revealed {
+    transform: translateX(0);
+}
+
+.scroll-reveal.zoom-in {
+    transform: scale(0.8);
+}
+
+.scroll-reveal.zoom-in.revealed {
+    transform: scale(1);
+}
+
+/* Text size animation based on scroll */
+.scroll-text {
+    transition: font-size 0.3s ease, transform 0.3s ease;
+}
+
+/* Image hover effects */
+.image-hover-effect {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.image-hover-effect img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.image-hover-effect:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.image-hover-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.image-hover-effect:hover::after {
+    transform: translateX(100%);
+}
+
+/* Cursor animation effects */
+.cursor-effect {
+    position: relative;
+    cursor: pointer;
+}
+
+.cursor-effect::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.3), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cursor-effect:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+/* Ripple effect */
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.6);
+    transform: scale(0);
+    animation: rippleAnimation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleAnimation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Page transition animations */
+.page-transition-enter {
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+.page-transition-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page-transition-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-transition-exit-active {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Grid animation */
+.grid-animate {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.grid-animate.animate {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.grid-animate:nth-child(1) { transition-delay: 0.1s; }
+.grid-animate:nth-child(2) { transition-delay: 0.2s; }
+.grid-animate:nth-child(3) { transition-delay: 0.3s; }
+.grid-animate:nth-child(4) { transition-delay: 0.4s; }
+.grid-animate:nth-child(5) { transition-delay: 0.5s; }
+.grid-animate:nth-child(6) { transition-delay: 0.6s; }
+
+/* Movie card advanced hover */
+.movie-card-advanced {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.movie-card-advanced:hover {
+    transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+}
+
+.movie-card-advanced::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-primary);
+    border-radius: var(--border-radius);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-card-advanced:hover::before {
+    opacity: 1;
+}
+
+/* Navbar animation improvements */
+.nav-link-enhanced {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-link-enhanced:hover::before {
+    left: 100%;
+}
+
+/* Button pulse animation */
+.pulse-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.pulse-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.pulse-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Loading animations */
+.skeleton-loader {
+    background: linear-gradient(90deg, #2a2a3e 25%, #3a3a4e 50%, #2a2a3e 75%);
+    background-size: 200% 100%;
+    animation: skeleton 1.5s infinite;
+}
+
+@keyframes skeleton {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Parallax effect */
+.parallax-element {
+    transform: translateZ(0);
+    transition: transform 0.1s ease-out;
+}
+
+/* 3D card flip */
+.flip-card {
+    background-color: transparent;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    background: var(--gradient-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+/* Floating animation */
+.float-animation {
+    animation: floating 3s ease-in-out infinitez;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Glow effect */
+.glow-effect {
+    position: relative;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: var(--gradient-primary);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glow-effect:hover::after {
+    opacity: 1;
+}
+
+/* Typewriter effect */
+.typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid var(--primary-color);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--primary-color);
+    }
+}
+
+/* Particle animation */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: particleFloat 10s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced transitions */
+.smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bounce-transition {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Advanced hover states */
+.interactive-hover {
+    transition: all 0.3s ease;
+}
+
+.interactive-hover:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+/* Loading spinner variations */
+.spinner-dots {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.spinner-dots div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.spinner-dots div:nth-child(1) {
+    left: 8px;
+    animation: spinnerDots1 0.6s infinite;
+}
+
+.spinner-dots div:nth-child(2) {
+    left: 8px;
+    animation: spinnerDots2 0.6s infinite;
+}
+
+.spinner-dots div:nth-child(3) {
+    left: 32px;
+    animation: spinnerDots2 0.6s infinite;
+}
+
+.spinner-dots div:nth-child(4) {
+    left: 56px;
+    animation: spinnerDots3 0.6s infinite;
+}
+
+@keyframes spinnerDots1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes spinnerDots3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes spinnerDots2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+/* Stagger animation */
+.stagger-animation {
+    animation-delay: calc(var(--animation-order) * 0.1s);
+}

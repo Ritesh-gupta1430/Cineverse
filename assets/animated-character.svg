@@ -1,0 +1,178 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .character-body { fill: #ff6b35; }
+      .character-head { fill: #ff8c5a; }
+      .character-eyes { fill: #ffffff; }
+      .character-pupils { fill: #0f0f23; }
+      .character-mouth { fill: #ffffff; }
+      .character-arms { fill: #ff6b35; }
+      .character-legs { fill: #ff6b35; }
+      .character-hat { fill: #1a1a2e; }
+      .character-popcorn { fill: #ffeb3b; }
+      
+      .bounce-animation {
+        animation: character-bounce 2s ease-in-out infinite;
+        transform-origin: center bottom;
+      }
+      
+      .wave-animation {
+        animation: character-wave 3s ease-in-out infinite;
+        transform-origin: center;
+      }
+      
+      .blink-animation {
+        animation: character-blink 4s ease-in-out infinite;
+      }
+      
+      .popcorn-animation {
+        animation: popcorn-float 2.5s ease-in-out infinite;
+        transform-origin: center;
+      }
+      
+      @keyframes character-bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-8px);
+        }
+        60% {
+          transform: translateY(-4px);
+        }
+      }
+      
+      @keyframes character-wave {
+        0%, 50%, 100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(15deg);
+        }
+        75% {
+          transform: rotate(-15deg);
+        }
+      }
+      
+      @keyframes character-blink {
+        0%, 90%, 100% {
+          transform: scaleY(1);
+        }
+        95% {
+          transform: scaleY(0.1);
+        }
+      }
+      
+      @keyframes popcorn-float {
+        0%, 100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-3px) rotate(5deg);
+        }
+      }
+    </style>
+  </defs>
+  
+  <!-- Character Body -->
+  <g class="bounce-animation">
+    <!-- Body -->
+    <ellipse cx="40" cy="55" rx="12" ry="18" class="character-body"/>
+    
+    <!-- Head -->
+    <circle cx="40" cy="30" r="15" class="character-head"/>
+    
+    <!-- Movie Hat -->
+    <ellipse cx="40" cy="18" rx="18" ry="6" class="character-hat"/>
+    <rect x="32" y="12" width="16" height="8" rx="2" class="character-hat"/>
+    
+    <!-- Eyes -->
+    <circle cx="35" cy="28" r="3" class="character-eyes"/>
+    <circle cx="45" cy="28" r="3" class="character-eyes"/>
+    
+    <!-- Pupils -->
+    <g class="blink-animation">
+      <circle cx="35" cy="28" r="1.5" class="character-pupils"/>
+      <circle cx="45" cy="28" r="1.5" class="character-pupils"/>
+    </g>
+    
+    <!-- Mouth -->
+    <ellipse cx="40" cy="35" rx="4" ry="2" class="character-mouth"/>
+    <path d="M 36 35 Q 40 38 44 35" stroke="#0f0f23" stroke-width="1" fill="none"/>
+    
+    <!-- Arms -->
+    <g class="wave-animation">
+      <ellipse cx="25" cy="45" rx="4" ry="10" class="character-arms" transform="rotate(-20 25 45)"/>
+      <circle cx="23" cy="52" r="3" class="character-head"/>
+    </g>
+    <ellipse cx="55" cy="45" rx="4" ry="10" class="character-arms" transform="rotate(20 55 45)"/>
+    <circle cx="57" cy="52" r="3" class="character-head"/>
+    
+    <!-- Legs -->
+    <ellipse cx="35" cy="68" rx="3" ry="8" class="character-legs"/>
+    <ellipse cx="45" cy="68" rx="3" ry="8" class="character-legs"/>
+    
+    <!-- Feet -->
+    <ellipse cx="35" cy="75" rx="5" ry="2" class="character-head"/>
+    <ellipse cx="45" cy="75" rx="5" ry="2" class="character-head"/>
+  </g>
+  
+  <!-- Floating Popcorn -->
+  <g class="popcorn-animation">
+    <circle cx="65" cy="20" r="2" class="character-popcorn"/>
+    <circle cx="67" cy="18" r="1.5" class="character-popcorn"/>
+    <circle cx="63" cy="18" r="1.5" class="character-popcorn"/>
+  </g>
+  
+  <g class="popcorn-animation" style="animation-delay: 0.5s;">
+    <circle cx="15" cy="35" r="1.5" class="character-popcorn"/>
+    <circle cx="17" cy="33" r="1" class="character-popcorn"/>
+    <circle cx="13" cy="33" r="1" class="character-popcorn"/>
+  </g>
+  
+  <!-- Movie Camera Icon on Hat -->
+  <g transform="translate(35, 15)">
+    <rect x="0" y="0" width="10" height="6" rx="1" fill="#ffffff"/>
+    <rect x="2" y="1" width="6" height="4" rx="0.5" fill="#0f0f23"/>
+    <circle cx="5" cy="3" r="1.5" fill="#ff6b35"/>
+    <circle cx="5" cy="3" r="0.8" fill="#ffffff"/>
+  </g>
+  
+  <!-- Magic Sparkles -->
+  <g class="popcorn-animation" style="animation-delay: 1s;">
+    <path d="M 70 45 L 72 47 L 70 49 L 68 47 Z" fill="#ffeb3b"/>
+    <path d="M 70 45 L 70 49 M 68 47 L 72 47" stroke="#ffeb3b" stroke-width="0.5"/>
+  </g>
+  
+  <g class="popcorn-animation" style="animation-delay: 1.5s;">
+    <path d="M 10 60 L 11 61 L 10 62 L 9 61 Z" fill="#ffeb3b"/>
+    <path d="M 10 60 L 10 62 M 9 61 L 11 61" stroke="#ffeb3b" stroke-width="0.3"/>
+  </g>
+  
+  <!-- Film Strip Decoration -->
+  <rect x="2" y="2" width="76" height="4" fill="#1a1a2e" opacity="0.3"/>
+  <rect x="4" y="3" width="3" height="2" fill="#ffffff" opacity="0.8"/>
+  <rect x="9" y="3" width="3" height="2" fill="#ffffff" opacity="0.8"/>
+  <rect x="14" y="3" width="3" height="2" fill="#ffffff" opacity="0.8"/>
+  <rect x="68" y="3" width="3" height="2" fill="#ffffff" opacity="0.8"/>
+  <rect x="73" y="3" width="3" height="2" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Hover Effect Group -->
+  <g class="hover-effects" style="opacity: 0; transition: opacity 0.3s ease;">
+    <circle cx="40" cy="40" r="35" fill="none" stroke="#ff6b35" stroke-width="1" stroke-dasharray="5,5" opacity="0.6"/>
+  </g>
+  
+  <style>
+    svg:hover .hover-effects {
+      opacity: 1;
+    }
+    
+    svg:hover .bounce-animation {
+      animation-duration: 1s;
+    }
+    
+    svg:hover .wave-animation {
+      animation-duration: 1.5s;
+    }
+  </style>
+</svg>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVerse - Movie & TV Explorer</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="assets/logo.svg" alt="CineVerse">
+            </div>
+            <div class="loader-spinner"></div>
+            <p>Loading CineVerse...</p>
+        </div>
+    </div>
+
+    <!-- Animated Character -->
+    <div class="animated-character">
+        <img src="assets/animated-character.svg" alt="Friendly Character">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="CineVerse">
+                <span>CineVerse</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#explore" class="nav-link">Explore</a></li>
+                    <li><a href="#watchlist" class="nav-link">Watchlist</a></li>
+                    <li><a href="#team" class="nav-link">Team</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search movies, shows, actors...">
+                    <i class="fas fa-search search-icon"></i>
+                    <div class="search-results" id="search-results"></div>
+                </div>
+                <button class="login-btn" id="login-btn">Login</button>
+                <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-menu">
+                        <div class="profile-info">
+                            <span id="profile-name">User</span>
+                            <small id="profile-email">user@example.com</small>
+                        </div>
+                        <div class="profile-options">
+                            <button onclick="cineVerse.showSection('watchlist')">My Watchlist</button>
+                            <button onclick="cineVerse.logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="scroll-text">Discover</span>
+                        <span class="scroll-text">Amazing</span>
+                        <span class="scroll-text">Movies</span>
+                    </h1>
+                    <p class="hero-description">
+                        Explore thousands of movies and TV shows. Create your personal watchlist and never miss great content again.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="cta-btn primary">Start Exploring</button>
+                        <button class="cta-btn secondary">Join Community</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-cards">
+                        <img src="assets/img1.jpeg" class="floating-card" style="--delay: 0s"></img>
+                        <img src="assets/img2.jpeg" class="floating-card" style="--delay: 0.5s"></img>
+                        <img src="assets/img3.jpeg" class="floating-card" style="--delay: 1s"></img>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trending Movies Slider -->
+            <div class="section-header">
+                <h2>Trending Now</h2>
+                <div class="marquee-container">
+                    <div class="marquee">
+                        <span>🔥 Hot Movies • 🎬 New Releases • ⭐ Top Rated • 🍿 Must Watch • </span>
+                        <span>🔥 Hot Movies • 🎬 New Releases • ⭐ Top Rated • 🍿 Must Watch • </span>
+                    </div>
+                </div>
+            </div>
+            <div class="trending-slider" id="trending-slider">
+                <div class="slider-track" id="slider-track">
+                    <!-- Movies will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Content Grid Sections -->
+            <div class="content-sections">
+                <!-- Top 10 -->
+                <div class="content-section">
+                    <h2 class="section-title">Top 10 This Week</h2>
+                    <div class="movie-slider-container">
+                        <div class="movie-slider" id="top-10-slider">
+                            <div class="slider-track" id="top-10-track">
+                                <!-- Movies will be loaded here -->
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" onclick="cineVerse.slideMovies('top-10', -1)">❮</button>
+                        <button class="slider-btn next" onclick="cineVerse.slideMovies('top-10', 1)">❯</button>
+                    </div>
+                </div>
+
+                <!-- Top IMDB Rated -->
+                <div class="content-section">
+                    <h2 class="section-title">Highest Rated</h2>
+                    <div class="movie-slider-container">
+                        <div class="movie-slider" id="top-rated-slider">
+                            <div class="slider-track" id="top-rated-track">
+                                <!-- Movies will be loaded here -->
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" onclick="cineVerse.slideMovies('top-rated', -1)">❮</button>
+                        <button class="slider-btn next" onclick="cineVerse.slideMovies('top-rated', 1)">❯</button>
+                    </div>
+                </div>
+
+                <!-- Genre Sections -->
+                <div class="content-section">
+                    <h2 class="section-title">Action & Adventure</h2>
+                    <div class="movie-slider-container">
+                        <div class="movie-slider" id="action-slider">
+                            <div class="slider-track" id="action-track">
+                                <!-- Movies will be loaded here -->
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" onclick="cineVerse.slideMovies('action', -1)">❮</button>
+                        <button class="slider-btn next" onclick="cineVerse.slideMovies('action', 1)">❯</button>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="section-title">Horror & Thriller</h2>
+                    <div class="movie-slider-container">
+                        <div class="movie-slider" id="horror-slider">
+                            <div class="slider-track" id="horror-track">
+                                <!-- Movies will be loaded here -->
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" onclick="cineVerse.slideMovies('horror', -1)">❮</button>
+                        <button class="slider-btn next" onclick="cineVerse.slideMovies('horror', 1)">❯</button>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="section-title">Comedy</h2>
+                    <div class="movie-slider-container">
+                        <div class="movie-slider" id="comedy-slider">
+                            <div class="slider-track" id="comedy-track">
+                                <!-- Movies will be loaded here -->
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" onclick="cineVerse.slideMovies('comedy', -1)">❮</button>
+                        <button class="slider-btn next" onclick="cineVerse.slideMovies('comedy', 1)">❯</button>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="section-title">Animation</h2>
+                    <div class="movie-slider-container">
+                        <div class="movie-slider" id="animation-slider">
+                            <div class="slider-track" id="animation-track">
+                                <!-- Movies will be loaded here -->
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" onclick="cineVerse.slideMovies('animation', -1)">❮</button>
+                        <button class="slider-btn next" onclick="cineVerse.slideMovies('animation', 1)">❯</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reasons to Join -->
+            <div class="reasons-section">
+                <h2 class="section-title">Why Join CineVerse?</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <h3>Personal Watchlist</h3>
+                        <p>Save movies and shows to watch later. Never forget what you wanted to see.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Rate & Review</h3>
+                        <p>Share your thoughts and discover what others think about your favorite content.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community</h3>
+                        <p>Connect with fellow movie enthusiasts and discover new recommendations.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3>Notifications</h3>
+                        <p>Get notified when new episodes or movies from your watchlist are available.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore Section -->
+        <section id="explore" class="section">
+            <div class="explore-header">
+                <h1>Explore Movies & TV Shows</h1>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label>Genre:</label>
+                        <select id="genre-filter">
+                            <option value="">All Genres</option>
+                            <option value="28">Action</option>
+                            <option value="12">Adventure</option>
+                            <option value="16">Animation</option>
+                            <option value="35">Comedy</option>
+                            <option value="80">Crime</option>
+                            <option value="99">Documentary</option>
+                            <option value="18">Drama</option>
+                            <option value="10751">Family</option>
+                            <option value="14">Fantasy</option>
+                            <option value="36">History</option>
+                            <option value="27">Horror</option>
+                            <option value="10402">Music</option>
+                            <option value="9648">Mystery</option>
+                            <option value="10749">Romance</option>
+                            <option value="878">Science Fiction</option>
+                            <option value="10770">TV Movie</option>
+                            <option value="53">Thriller</option>
+                            <option value="10752">War</option>
+                            <option value="37">Western</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Year:</label>
+                        <select id="year-filter">
+                            <option value="">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Rating:</label>
+                        <select id="rating-filter">
+                            <option value="">All Ratings</option>
+                            <option value="9">9.0+ Stars</option>
+                            <option value="8">8.0+ Stars</option>
+                            <option value="7">7.0+ Stars</option>
+                            <option value="6">6.0+ Stars</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Language:</label>
+                        <select id="language-filter">
+                            <option value="">All Languages</option>
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="te">Telugu</option>
+                            <option value="ta">Tamil</option>
+                            <option value="ml">Malayalam</option>
+                            <option value="kn">Kannada</option>
+                        </select>
+                    </div>
+                    <button class="filter-btn" id="apply-filters">Apply Filters</button>
+                    <button class="filter-btn secondary" id="clear-filters">Clear All</button>
+                </div>
+            </div>
+            <div class="explore-content">
+                <div class="movie-grid large-grid" id="explore-grid">
+                    <!-- Movies will be loaded here -->
+                </div>
+                <div class="load-more-container">
+                    <button class="load-more-btn" id="load-more">Load More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watchlist Section -->
+        <section id="watchlist" class="section">
+            <div class="watchlist-header">
+                <h1>My Watchlist</h1>
+                <p>Keep track of movies and shows you want to watch</p>
+            </div>
+            <div class="watchlist-content" id="watchlist-content">
+                <!-- Watchlist items will be loaded here -->
+            </div>
+            <div class="empty-watchlist" id="empty-watchlist" style="display: none;">
+                <div class="empty-state">
+                    <i class="fas fa-bookmark"></i>
+                    <h3>Your watchlist is empty</h3>
+                    <p>Start adding movies and shows to keep track of what you want to watch</p>
+                    <button class="cta-btn primary" onclick="showSection('explore')">Explore Movies</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section">
+            <div class="team-header">
+                <h1 class="team-title">Meet Our Team</h1>
+                <p class="team-subtitle">The passionate minds behind CineVerse</p>
+            </div>
+            <div class="team-content">
+                <div class="team-grid">
+                    <div class="team-member" data-member="1">
+                        <div class="member-name">
+                            <h3>Ritesh Gupta</h3>
+                            <p>Frontend Developer</p>
+                        </div>
+                        <div class="member-photo">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member" data-member="2">
+                        <div class="member-name">
+                            <h3>Aayush Gupta</h3>
+                            <p>Backend Developer</p>
+                        </div>
+                        <div class="member-photo">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-description">
+                    <p>Our team combines technical expertise with creative vision to bring you the best movie exploration experience. We're passionate about cinema and technology, working together to create something amazing.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Login to CineVerse</h2>
+                <button class="close-btn" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">Login</button>
+                    <button class="tab-btn" data-tab="register">Register</button>
+                </div>
+                
+                <form id="login-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Login</button>
+                </form>
+
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password</label>
+                        <input type="password" id="register-confirm" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Detail Modal -->
+    <div class="modal" id="movie-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <button class="close-btn" id="close-movie-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="movie-modal-body">
+                <!-- Movie details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="assets/logo.svg" alt="CineVerse">
+                    <span>CineVerse</span>
+                </div>
+                <p>Your ultimate destination for movie and TV show exploration.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#explore">Explore</a></li>
+                    <li><a href="#watchlist">Watchlist</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CineVerse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/wishlist.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

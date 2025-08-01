@@ -1,0 +1,474 @@
+/* Responsive Design Styles */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1200px) {
+
+.movie-slider {
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.slider-track {
+  display: flex;
+  gap: 20px;
+  min-width: 100%;
+  scroll-snap-align: start;
+}
+
+.movie-card {
+  flex: 0 0 auto;
+  width: clamp(130px, 20vw, 200px); /* Responsive card width */
+  scroll-snap-align: start;
+    background: var(--gradient-card);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+.movie-slider::-webkit-scrollbar {
+  display: none;
+}
+.movie-slider {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+    .hero-section {
+        /* margin: auto; */
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.8rem;
+        width: 100%;
+    }
+    .hero-title, .hero-description{
+        width: 85%;
+        margin: 0 auto;
+        text-align: center; 
+        font-size: 1.8rem;
+        padding-bottom: 1rem;
+    }
+    
+    .cta-btn {
+        margin: 0 auto;
+        width: 85%;
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.2rem;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-controls .filter-group {
+        flex: 1;
+    }
+}
+@media (max-width: 854px) {
+  #explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto, 1fr); /* Exactly 3 equal columns */
+    gap: 16px; /* Optional spacing between cards */
+  }
+
+  #explore-grid .movie-card {
+    width: 100%; /* Ensure cards fill the grid cell */
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--background-darker);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .nav-link {
+        font-size: 1.5rem;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .search-container {
+        display: none;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .movie-card {
+        min-width: auto;
+        height: 350px;
+    }
+    
+    .trending-slider {
+        padding: 0 1rem;
+    }
+    
+    .slider-track {
+        gap: 0.5rem;
+        width: auto;
+    }
+    
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .reason-card {
+        padding: 1.5rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .team-member {
+        padding: 1.5rem;
+    }
+    
+    .team-member:hover .member-photo {
+        right: 10px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .filter-controls {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    .hero-visual{
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+    .nav-container {
+        padding: 0 0.5rem;
+    }
+    
+    .nav-logo span {
+        display: none;
+    }
+    
+    .login-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.9rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+    }
+    
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        padding: 0 0.5rem;
+    }
+    
+    .movie-card {
+        height: 280px;
+        min-width: auto;
+    }
+    
+    .movie-info {
+        padding: 0.75rem;
+    }
+    
+    .movie-title {
+        font-size: 1rem;
+    }
+    
+    .movie-meta {
+        font-size: 0.8rem;
+    }
+    
+    .trending-slider {
+        padding: 0 0.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .team-title {
+        font-size: 2rem;
+    }
+    
+    .team-subtitle {
+        font-size: 1rem;
+    }
+    
+    .reason-card {
+        padding: 1rem;
+    }
+    
+    .reason-icon {
+        font-size: 2rem;
+    }
+    
+    .reason-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .reason-card p {
+        font-size: 0.9rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .auth-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        padding: 0.75rem 1rem;
+    }
+    
+    .form-group input {
+        padding: 0.6rem;
+    }
+    
+    .animated-character {
+        width: 60px;
+        height: 60px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .floating-cards {
+        height: 300px;
+    }
+    
+    .floating-card {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .marquee span {
+        font-size: 1rem;
+    }
+    
+    .filter-controls {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .load-more-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+    }
+    
+    .empty-state h3 {
+        font-size: 1.2rem;
+    }
+    
+    .footer-content {
+        padding: 0 1rem;
+    }
+    
+    .social-links a {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 320px) {
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .movie-card {
+        height: 240px;
+    }
+    
+    .movie-info {
+        padding: 0.5rem;
+    }
+    
+    .movie-title {
+        font-size: 0.9rem;
+    }
+    
+    .movie-meta {
+        font-size: 0.7rem;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .team-title {
+        font-size: 1.8rem;
+    }
+    
+    .reason-card {
+        padding: 0.75rem;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 0.5rem;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: auto;
+        padding: 2rem;
+    }
+    
+    .nav-menu {
+        height: calc(100vh - 60px);
+        top: 60px;
+    }
+    
+    .navbar {
+        padding: 0.5rem 0;
+    }
+    
+    .main-content {
+        margin-top: 60px;
+    }
+    
+    .modal-content {
+        max-height: 80vh;
+    }
+}
+
+
+/* Custom Scrollbar for Mobile */
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 2px;
+    }
+}
+
+/* Focus Styles for Accessibility */
+@media (any-hover: none) {
+    .movie-card:focus,
+    .reason-card:focus,
+    .team-member:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+    
+    .nav-link:focus,
+    .cta-btn:focus,
+    .filter-btn:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}

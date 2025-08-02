@@ -1,4 +1,3 @@
-// Main JavaScript File
 class CineVerse {
     constructor() {
         this.currentSection = 'home';
@@ -106,7 +105,6 @@ class CineVerse {
             observer.observe(el);
         });
 
-        // Grid animation observer
         const gridObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -593,7 +591,6 @@ class CineVerse {
                 url: window.location.href
             });
         } else {
-            // Fallback: copy to clipboard
             navigator.clipboard.writeText(window.location.href);
             this.showNotification('Link copied to clipboard!', 'success');
         }

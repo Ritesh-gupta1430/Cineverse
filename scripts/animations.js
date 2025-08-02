@@ -207,16 +207,14 @@ class AnimationController {
     }
 
     updateScrollText(scrollPercent) {
-        // Removed auto-scrolling text animation to prevent unwanted scrolling behavior
         return;
     }
 
     updateParallax(scrollTop) {
-        // Reduced parallax effects to prevent unwanted scrolling behavior
         const parallaxElements = document.querySelectorAll('.floating-card, .parallax-element');
         
         parallaxElements.forEach((element, index) => {
-            const speed = 0.05; // Much reduced speed
+            const speed = 0.05;
             const yPos = -(scrollTop * speed);
             element.style.transform = `translateY(${yPos}px)`;
         });
@@ -232,32 +230,27 @@ class AnimationController {
     }
 
     updateProgress(scrollPercent) {
-        // Update any progress bars or indicators
         const progressBars = document.querySelectorAll('.progress-bar');
         progressBars.forEach(bar => {
             bar.style.width = `${scrollPercent * 100}%`;
         });
     }
 
-    // Cursor animations and effects
     setupCursorAnimations() {
         if (!this.animationsEnabled) return;
 
         let cursor = null;
         let cursorFollower = null;
 
-        // Create custom cursor elements (optional enhancement)
-        if (window.innerWidth > 768) { // Only on desktop
+        if (window.innerWidth > 768) {
             this.createCustomCursor();
         }
 
-        // Setup cursor effects for interactive elements
         document.addEventListener('mousemove', (e) => {
             this.updateCursorPosition(e.clientX, e.clientY);
             this.handleCursorEffects(e);
         });
 
-        // Setup hover effects
         this.setupHoverEffects();
     }
 
@@ -271,8 +264,6 @@ class AnimationController {
         
         document.body.appendChild(cursor);
         document.body.appendChild(follower);
-        
-        // Add styles
         this.addCursorStyles();
     }
 
@@ -335,12 +326,10 @@ class AnimationController {
     handleCursorEffects(e) {
         const target = e.target;
         
-        // Image hover effects
         if (target.tagName === 'IMG' && target.closest && target.closest('.movie-card')) {
             this.triggerImageHoverEffect(target);
         }
         
-        // Interactive element effects
         if (target.matches('.cursor-effect, .movie-card, .reason-card, .team-member')) {
             this.triggerCursorEffect(target, e);
         }
@@ -351,7 +340,6 @@ class AnimationController {
             image.dataset.originalSrc = image.src;
         }
         
-        // Add hover overlay effect
         image.style.filter = 'brightness(1.1) contrast(1.1)';
         image.style.transform = 'scale(1.05)';
     }

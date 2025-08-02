@@ -16,7 +16,6 @@
     --transition: all 0.3s ease;
 }
 
-/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -777,11 +776,11 @@ body {
 }
 #watchlist-grid {
     display: grid;
-    grid-template-columns: repeat(auto, 1fr); /* Exactly 3 equal columns */
-    gap: 16px; /* Optional spacing between cards */
+    grid-template-columns: repeat(auto, 1fr); 
+    gap: 16px; 
   }
 #watchlist-grid .movie-card {
-    width: 100%; /* Ensure cards fill the grid cell */
+    width: 100%; 
 }
 
 .movie-grid.large-grid {
@@ -1389,10 +1388,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #ff8c5a;
-}
-
-@media (max-width: 768px) {
-  .movie-card {
-    width: 60vw; /* Larger cards on mobile */
-  }
 }

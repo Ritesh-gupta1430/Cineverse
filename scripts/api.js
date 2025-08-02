@@ -1,18 +1,16 @@
-// Movie API Integration
 class MovieAPI {
     constructor() {
         this.baseURL = 'https://api.themoviedb.org/3';
         this.apiKey = this.getApiKey();
         this.imageBaseURL = 'https://image.tmdb.org/t/p/';
         this.cache = new Map();
-        this.cacheTimeout = 5 * 60 * 1000; // 5 minutes
+        this.cacheTimeout = 5 * 60 * 1000;
     }
 
     getApiKey() {
-        // Try to get API key from environment or use a fallback
         return window?.TMDB_API_KEY || 
                localStorage.getItem('tmdb_api_key') ||
-               '079f0ba47ae5ef01bae156e5a0c7e059'; // User provided API key
+               '079f0ba47ae5ef01bae156e5a0c7e059'; 
     }
 
     async makeRequest(endpoint, params = {}) {
@@ -45,7 +43,6 @@ class MovieAPI {
 
             const data = await response.json();
             
-            // Cache the result
             this.cache.set(cacheKey, {
                 data,
                 timestamp: Date.now()
@@ -58,32 +55,26 @@ class MovieAPI {
         }
     }
 
-    // Get trending movies and TV shows
     async getTrending(mediaType = 'movie', timeWindow = 'day') {
         return this.makeRequest(`/trending/${mediaType}/${timeWindow}`);
     }
 
-    // Get popular movies
     async getPopular(page = 1) {
         return this.makeRequest('/movie/popular', { page });
     }
 
-    // Get top rated movies
     async getTopRated(page = 1) {
         return this.makeRequest('/movie/top_rated', { page });
     }
 
-    // Get upcoming movies
     async getUpcoming(page = 1) {
         return this.makeRequest('/movie/upcoming', { page });
     }
 
-    // Get now playing movies
     async getNowPlaying(page = 1) {
         return this.makeRequest('/movie/now_playing', { page });
     }
 
-    // Get movies by genre
     async getMoviesByGenre(genreId, page = 1) {
         return this.makeRequest('/discover/movie', {
             with_genres: genreId,
@@ -92,7 +83,6 @@ class MovieAPI {
         });
     }
 
-    // Get TV shows by genre
     async getTVShowsByGenre(genreId, page = 1) {
         return this.makeRequest('/discover/tv', {
             with_genres: genreId,
@@ -101,7 +91,6 @@ class MovieAPI {
         });
     }
 
-    // Search movies and TV shows
     async searchMovies(query, page = 1) {
         if (!query.trim()) {
             throw new Error('Search query cannot be empty');
@@ -123,38 +112,32 @@ class MovieAPI {
         return this.makeRequest('/search/multi', { query, page });
     }
 
-    // Get movie details
     async getMovieDetails(movieId) {
         return this.makeRequest(`/movie/${movieId}`, {
             append_to_response: 'videos,credits,similar,reviews'
         });
     }
 
-    // Get TV show details
     async getTVDetails(tvId) {
         return this.makeRequest(`/tv/${tvId}`, {
             append_to_response: 'videos,credits,similar,reviews'
         });
     }
 
-    // Get movie credits
     async getMovieCredits(movieId) {
         return this.makeRequest(`/movie/${movieId}/credits`);
     }
 
-    // Get TV credits
     async getTVCredits(tvId) {
         return this.makeRequest(`/tv/${tvId}/credits`);
     }
 
-    // Get person details
     async getPersonDetails(personId) {
         return this.makeRequest(`/person/${personId}`, {
             append_to_response: 'movie_credits,tv_credits'
         });
     }
 
-    // Get genres
     async getMovieGenres() {
         return this.makeRequest('/genre/movie/list');
     }

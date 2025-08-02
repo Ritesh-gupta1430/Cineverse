@@ -14,7 +14,6 @@ class WishlistManager {
     }
 
     setupEventListeners() {
-        // Listen for storage changes (sync across tabs)
         window.addEventListener('storage', (e) => {
             if (e.key === this.storageKey) {
                 this.wishlist = this.loadWishlist();
@@ -31,7 +30,6 @@ class WishlistManager {
         });
     }
 
-    // Load wishlist from localStorage
     loadWishlist() {
         try {
             const stored = localStorage.getItem(this.storageKey);
@@ -42,7 +40,6 @@ class WishlistManager {
         }
     }
 
-    // Save wishlist to localStorage
     saveWishlist() {
         try {
             localStorage.setItem(this.storageKey, JSON.stringify(this.wishlist));
@@ -55,19 +52,15 @@ class WishlistManager {
         }
     }
 
-    // Add movie to wishlist
     async addToWishlist(movieId) {
         try {
-            // Check if already in wishlist
             if (this.isInWishlist(movieId)) {
                 this.showNotification('Already in your watchlist!', 'info');
                 return false;
             }
 
-            // Fetch movie details
             const movieDetails = await movieAPI.getMovieDetails(movieId);
             
-            // Create wishlist item
             const wishlistItem = {
                 id: movieDetails.id,
                 title: movieDetails.title,
@@ -86,21 +79,16 @@ class WishlistManager {
                 favorite: false
             };
 
-            // Add to wishlist
             this.wishlist.unshift(wishlistItem);
             
-            // Save and update UI
             if (this.saveWishlist()) {
                 this.showNotification('Added to watchlist!', 'success');
                 this.updateWishlistUI();
                 this.updateWishlistButtons(movieId, true);
-                
-                // Animate the addition
                 this.animateWishlistAdd();
                 
                 return true;
             }
-            
             return false;
         } catch (error) {
             console.error('Error adding to wishlist:', error);
@@ -109,7 +97,6 @@ class WishlistManager {
         }
     }
 
-    // Remove movie from wishlist
     removeFromWishlist(movieId) {
         const index = this.wishlist.findIndex(item => item.id === movieId);
         
@@ -121,8 +108,6 @@ class WishlistManager {
                 this.showNotification('Removed from watchlist!', 'success');
                 this.updateWishlistUI();
                 this.updateWishlistButtons(movieId, false);
-                
-                // Animate the removal
                 this.animateWishlistRemove(index);
                 
                 return true;
@@ -132,22 +117,18 @@ class WishlistManager {
         return false;
     }
 
-    // Check if movie is in wishlist
     isInWishlist(movieId) {
         return this.wishlist.some(item => item.id === movieId);
     }
 
-    // Get wishlist
     getWishlist() {
         return [...this.wishlist]; // Return copy
     }
 
-    // Get wishlist item by ID
     getWishlistItem(movieId) {
         return this.wishlist.find(item => item.id === movieId);
     }
 
-    // Update movie in wishlist (rating, notes, etc.)
     updateWishlistItem(movieId, updates) {
         const index = this.wishlist.findIndex(item => item.id === movieId);
         
@@ -642,7 +623,6 @@ document.addEventListener('DOMContentLoaded', () => {
     wishlistManager.updateWishlistUI();
 });
 
-// Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = WishlistManager;
 }
